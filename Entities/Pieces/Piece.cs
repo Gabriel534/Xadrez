@@ -43,6 +43,6 @@ namespace Xadrez.Entities
             throw new InvalidPointException("Ponto selecionaro invalido");
         }
 
-        
+        public override abstract string ToString();
     }
 }

@@ -47,7 +47,7 @@
     <Compile Include="Entities\Pieces\Pawn.cs" />
     <Compile Include="Entities\Pieces\Piece.cs" />
     <Compile Include="Entities\Utilities\Point.cs" />
-    <Compile Include="Entities\Utilities\TypePiece.cs" />
+    <Compile Include="Entities\Enums\TypePiece.cs" />
     <Compile Include="Exceptions\InvalidPointException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

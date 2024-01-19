@@ -13,39 +13,49 @@ namespace Xadrez.Entities.Pieces
         {
         }
 
-        protected override List<Point> GetPossibleMoves(List<Piece> pieces)
+        protected override List<Point> GetPossibleMoves(List<Piece> points)
         {
-            List<Point> list = new List<Point>();
+            throw new NotImplementedException();
+        }
 
-            // Detecta peças que podem ser pegas
-            foreach (Piece p in pieces)
-            {
-                if (p.PiecePoint.Y == (PiecePoint.Y + 1) && !pieces.Equals(this))
-                {
-                    if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
-                    {
-                        list.Add(p.PiecePoint);
-                    }
-                }
-            }
+        //protected override List<Point> GetPossibleMoves(List<Piece> pieces)
+        //{
+        //    List<Point> list = new List<Point>();
 
-            //Detecta demais posições
-            switch (PiecePoint.Y)
-            {
-                case 2:
-                    
-                    foreach (Piece p in pieces)
-                    {
-                        if (p.PiecePoint.Y ==)
-                    }
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y + 1));
+        //    // Detecta peças que podem ser pegas
+        //    foreach (Piece p in pieces)
+        //    {
+        //        if (p.PiecePoint.Y == (PiecePoint.Y + 1) && !p.Equals(this) && p.TypePiece != TypePiece)
+        //        {
+        //            if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
+        //            {
+        //                list.Add(p.PiecePoint);
+        //            }
+        //        }
+        //    }
 
-                    return list;
+        //    //Detecta demais posições
+        //    switch (PiecePoint.Y)
+        //    {
+        //        case 2:
 
-                case 8: return new List<Point> { null };
-                default: return new List<Point> { new Point(PiecePoint.X, PiecePoint.Y + 2) };
-            }
+        //            foreach (Piece p in pieces)
+        //            {
+        //                if (p.PiecePoint.Y ==)
+        //            }
+        //            list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
+        //            list.Add(new Point(PiecePoint.X, PiecePoint.Y + 1));
+
+        //            return list;
+
+        //        case 8: return new List<Point> { null };
+        //        default: return new List<Point> { new Point(PiecePoint.X, PiecePoint.Y + 2) };
+        //    }
+        //}
+
+        public override string ToString()
+        {
+            return "P";
         }
     }
 }

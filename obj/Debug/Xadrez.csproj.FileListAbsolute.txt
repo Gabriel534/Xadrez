@@ -1,0 +1,7 @@
+E:\C#Projetos\HelloWorld\Xadrez\obj\Debug\Xadrez.csproj.AssemblyReference.cache
+E:\C#Projetos\HelloWorld\Xadrez\obj\Debug\Xadrez.csproj.CoreCompileInputs.cache
+E:\C#Projetos\HelloWorld\Xadrez\bin\Debug\Xadrez.exe.config
+E:\C#Projetos\HelloWorld\Xadrez\bin\Debug\Xadrez.exe
+E:\C#Projetos\HelloWorld\Xadrez\bin\Debug\Xadrez.pdb
+E:\C#Projetos\HelloWorld\Xadrez\obj\Debug\Xadrez.exe
+E:\C#Projetos\HelloWorld\Xadrez\obj\Debug\Xadrez.pdb

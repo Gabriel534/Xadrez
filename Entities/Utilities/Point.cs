@@ -3,14 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xadrez.Exceptions;
 
 namespace Xadrez.Entities
 {
     internal class Point
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        
+
+        private int _x;
+        private int _y;
+
+        public int X
+        {
+            set
+            {
+                if (value <= 8 && value > 0)
+                {
+                    _x = value;
+                }
+                else
+                {
+                    throw new InvalidPointException("Ponto definido cai fora do tabuleiro 8x8");
+                }
+            }
+            get { return _x; }
+        }
+
+        public int Y
+        {
+            set
+            {
+                if (value <= 8 && value > 0)
+                {
+                    _y = value;
+                }
+                else
+                {
+                    throw new InvalidPointException("Ponto definido cai fora do tabuleiro 8x8");
+                }
+            }
+            get { return _y; }
+        }
+
         public Point(int x, int y)
         {
             X = x;
@@ -21,7 +55,7 @@ namespace Xadrez.Entities
         {
             return "X: "
                 + X
-                +", Y: "
+                + ", Y: "
                 + Y;
         }
 
@@ -33,9 +67,9 @@ namespace Xadrez.Entities
         public override bool Equals(object obj)
         {
             if (!(obj is Point)) return false;
-            
+
             Point p = (Point)obj;
-            if(p.X == X && p.Y == Y) return true;
+            if (p.X == X && p.Y == Y) return true;
             return false;
         }
 
