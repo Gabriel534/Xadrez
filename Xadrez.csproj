@@ -48,6 +48,7 @@
     <Compile Include="Entities\Pieces\Piece.cs" />
     <Compile Include="Entities\Utilities\Point.cs" />
     <Compile Include="Entities\Enums\TypePiece.cs" />
+    <Compile Include="Exceptions\InvalidColumnException.cs" />
     <Compile Include="Exceptions\InvalidPointException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

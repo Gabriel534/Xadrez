@@ -9,49 +9,86 @@ namespace Xadrez.Entities.Pieces
 {
     internal class Pawn : Piece
     {
-        public Pawn(TypePiece type,  Point point) : base(type, point)
+        public Pawn(TypePiece type, Point point) : base(type, point)
         {
         }
 
-        protected override List<Point> GetPossibleMoves(List<Piece> points)
+        public override List<Point> GetPossibleMoves(List<Piece> pieces)
         {
-            throw new NotImplementedException();
+            List<Point> list = new List<Point>();
+
+            // Percorre por todas as peças do jogo e faz as tarefaz dependendo do tipo da peça
+            if (Type == TypePiece.BLACK)
+            {
+                foreach (Piece p in pieces)
+                {
+                    // Detecta peças que possam ser comidas
+                    if (p.PiecePoint.Y == (PiecePoint.Y + 1) && !p.Equals(this) && p.Type != Type)
+                    {
+                        if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
+                        {
+                            list.Add(p.PiecePoint);
+                        }
+                    }
+
+                }
+            }
+            else if (Type == TypePiece.WHITE)
+            {
+                foreach (Piece p in pieces)
+                {
+                    if (p.PiecePoint.Y == (PiecePoint.Y - 1) && !p.Equals(this) && p.Type != Type)
+                    {
+                        if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
+                        {
+                            list.Add(p.PiecePoint);
+                        }
+                    }
+                }
+            }
+
+            // Verifica posição que pode ser colocada a frente do peão
+            if (Type == TypePiece.BLACK)
+            {
+                Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 1) && (x.PiecePoint.X == PiecePoint.X));
+
+                if (piece == null) { 
+                    list.Add(new Point(PiecePoint.X, PiecePoint.Y+1));
+                }
+
+
+                if (PiecePoint.Y == 2)
+                {
+                    Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2));
+                    if (piece2 == null && piece == null)
+                    {
+                        list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
+                    }
+                }
+            }
+            else if (Type == TypePiece.WHITE)
+            {
+                Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 1) && (x.PiecePoint.X == PiecePoint.X));
+
+                if (piece == null)
+                {
+                    list.Add(new Point(PiecePoint.X, PiecePoint.Y - 1));
+                }
+
+
+                if (PiecePoint.Y == 7)
+                {
+                    Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2));
+                    if (piece2 == null && piece==null)
+                    {
+                        list.Add(new Point(PiecePoint.X, PiecePoint.Y - 2));
+                    }
+                }
+            }
+
+            return list;
+
         }
-
-        //protected override List<Point> GetPossibleMoves(List<Piece> pieces)
-        //{
-        //    List<Point> list = new List<Point>();
-
-        //    // Detecta peças que podem ser pegas
-        //    foreach (Piece p in pieces)
-        //    {
-        //        if (p.PiecePoint.Y == (PiecePoint.Y + 1) && !p.Equals(this) && p.TypePiece != TypePiece)
-        //        {
-        //            if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
-        //            {
-        //                list.Add(p.PiecePoint);
-        //            }
-        //        }
-        //    }
-
-        //    //Detecta demais posições
-        //    switch (PiecePoint.Y)
-        //    {
-        //        case 2:
-
-        //            foreach (Piece p in pieces)
-        //            {
-        //                if (p.PiecePoint.Y ==)
-        //            }
-        //            list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
-        //            list.Add(new Point(PiecePoint.X, PiecePoint.Y + 1));
-
-        //            return list;
-
-        //        case 8: return new List<Point> { null };
-        //        default: return new List<Point> { new Point(PiecePoint.X, PiecePoint.Y + 2) };
-        //    }
-        //}
 
         public override string ToString()
         {

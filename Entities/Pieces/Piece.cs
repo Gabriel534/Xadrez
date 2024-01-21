@@ -12,17 +12,17 @@ namespace Xadrez.Entities
     {
 
         public Point PiecePoint { get; set; }
-        public TypePiece TypePiece { get; set; }
+        public TypePiece Type { get; set; }
 
         protected Piece(TypePiece type, Point point) { 
 
             PiecePoint = point;
-            TypePiece = type;
+            Type = type;
         }
 
-        protected abstract List<Point> GetPossibleMoves(List<Piece> points); //Possíveis locais para se colocar uma peça
+        public abstract List<Point> GetPossibleMoves(List<Piece> points); //Possíveis locais para se colocar uma peça
 
-        protected virtual void MakeMovement(Point point, List<Piece> points)
+        public virtual void MakeMovement(Point point, List<Piece> points)
         {
             // Coloca uma peça no lugar especificado e, caso haja alguma peça, ela come a peça
             foreach (Point p in GetPossibleMoves(points))
@@ -44,5 +44,15 @@ namespace Xadrez.Entities
         }
 
         public override abstract string ToString();
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public sealed override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
     }
 }
