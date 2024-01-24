@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Xadrez.Entities;
+using Xadrez.Entities.Comparators;
 using Xadrez.Entities.Pieces;
 using Xadrez.Entities.Utilities;
 using Xadrez.Exceptions;
@@ -34,27 +35,34 @@ namespace Xadrez
                 new Pawn(TypePiece.WHITE, new Point(5, 7)),
                 new Pawn(TypePiece.WHITE, new Point(6, 7)),
                 new Pawn(TypePiece.WHITE, new Point(7, 7)),
-                new Pawn(TypePiece.WHITE, new Point(8, 3)));
+                new Pawn(TypePiece.WHITE, new Point(8, 7)),
+                new Tower(TypePiece.BLACK, new Point(1, 1)),
+                new Tower(TypePiece.WHITE, new Point(1, 8)),
+                new Tower(TypePiece.BLACK, new Point(8, 1)),
+                new Tower(TypePiece.WHITE, new Point(8, 8)));
 
+            string posString;
             Piece piece;
             Point point;
+            Point pointAttack;
             List<Point> PossiblePoints = new List<Point>();
 
             while (true)
             {
 
                 point = null;
+                PossiblePoints.Clear();
 
                 // Atualiza o tabuleiro na tela
                 tabuleiro.UpdateBoardWithHighlightedPieces(PossiblePoints);
 
                 // Obtém a posição desejada
                 Console.Write("Origem: \n:> ");
-                string pos = Console.ReadLine();
+                posString = Console.ReadLine();
 
                 try
                 {
-                    point = XadrezTools.ConvertStringIntoPoint(pos);
+                    point = XadrezTools.ConvertStringIntoPoint(posString);
                 }
                 catch (InvalidStringPointException e)
                 {
@@ -64,7 +72,7 @@ namespace Xadrez
 
                 // Procura a peça mencionada pela posição
                 piece = tabuleiro.Pieces.Find(p => p.PiecePoint.Equals(point));
-                
+
                 // Se não encontrar a peça, manda mensagem e reinicia o loop
                 if (piece == null)
                 {
@@ -73,10 +81,36 @@ namespace Xadrez
                     continue;
                 }
 
+
                 PossiblePoints = piece.GetPossibleMoves(tabuleiro.Pieces);
 
+                // Atualiza novamente o tabuleiro na tela com os movimentos
+                tabuleiro.UpdateBoardWithHighlightedPieces(PossiblePoints);
                 Console.Write("Destino:\n:> ");
+                posString = Console.ReadLine();
+
+                try
+                {
+                    pointAttack = XadrezTools.ConvertStringIntoPoint(posString);
+                }
+                catch (InvalidStringPointException e)
+                {
+                    Console.WriteLine(e.Message);
+                    continue;
+                }
+
+                try
+                {
+                    piece.MakeMovement(pointAttack, tabuleiro.Pieces);
+                }
+                catch (InvalidPointException e)
+                {
+                    Console.WriteLine(e.Message);
+                    continue;
+                }
             }
         }
+
+
     }
 }

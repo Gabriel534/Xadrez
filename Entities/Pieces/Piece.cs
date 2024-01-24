@@ -20,27 +20,28 @@ namespace Xadrez.Entities
             Type = type;
         }
 
-        public abstract List<Point> GetPossibleMoves(List<Piece> points); //Possíveis locais para se colocar uma peça
+        public abstract List<Point> GetPossibleMoves(List<Piece> pieces); //Possíveis locais para se colocar uma peça
 
-        public virtual void MakeMovement(Point point, List<Piece> points)
+        public virtual void MakeMovement(Point point, List<Piece> pieces)
         {
             // Coloca uma peça no lugar especificado e, caso haja alguma peça, ela come a peça
-            foreach (Point p in GetPossibleMoves(points))
+            foreach (Point p in GetPossibleMoves(pieces))
             {
                 if (p.Equals(point))
                 {
-                    foreach(Piece p2 in points)
+                    foreach(Piece piece in pieces)
                     {
-                        if (point.Equals(p2.PiecePoint))
+                        if (point.Equals(piece.PiecePoint))
                         {
-                            points.Remove(p2);
+                            pieces.Remove(piece);
+                            break;
                         }
                     }
-                    PiecePoint = p;
+                    PiecePoint = point;
                     return;
                 }
             }
-            throw new InvalidPointException("Ponto selecionaro invalido");
+            throw new InvalidPointException("Ponto selecionado invalido");
         }
 
         public override abstract string ToString();

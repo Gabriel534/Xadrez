@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace Xadrez.Services
 {
     internal static class XadrezTools
     {
+
+        // Converte um ponto em uma string ex saída: f8, g4
         public static string ConvertPointIntoString(Point point)
         {
             switch(point.X)
@@ -27,7 +30,8 @@ namespace Xadrez.Services
             }
         }
 
-        // Converte uma string em um ponto ex: f8, g4
+        // Converte uma string em um ponto
+        // ex de entrada: f8, g4
         public static Point ConvertStringIntoPoint(string pos)
         {
             int x;

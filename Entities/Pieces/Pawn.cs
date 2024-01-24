@@ -9,6 +9,7 @@ namespace Xadrez.Entities.Pieces
 {
     internal class Pawn : Piece
     {
+        private int ValueMove; // Indica se a possível localização da casa é em cima ou em baixo dependendo do sinal deste valor, que é pra ser 1
         public Pawn(TypePiece type, Point point) : base(type, point)
         {
         }
@@ -17,77 +18,63 @@ namespace Xadrez.Entities.Pieces
         {
             List<Point> list = new List<Point>();
 
-            // Percorre por todas as peças do jogo e faz as tarefaz dependendo do tipo da peça
             if (Type == TypePiece.BLACK)
             {
-                foreach (Piece p in pieces)
-                {
-                    // Detecta peças que possam ser comidas
-                    if (p.PiecePoint.Y == (PiecePoint.Y + 1) && !p.Equals(this) && p.Type != Type)
-                    {
-                        if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
-                        {
-                            list.Add(p.PiecePoint);
-                        }
-                    }
-
-                }
+                ValueMove = 1;
             }
             else if (Type == TypePiece.WHITE)
             {
-                foreach (Piece p in pieces)
+                ValueMove = -1;
+            }
+
+
+            // Percorre por todas as peças do jogo e faz as tarefaz dependendo do tipo da peça
+            foreach (Piece p in pieces)
+            {
+                // Detecta peças que possam ser comidas
+                if (p.PiecePoint.Y == (PiecePoint.Y + ValueMove) && !p.Equals(this) && p.Type != Type)
                 {
-                    if (p.PiecePoint.Y == (PiecePoint.Y - 1) && !p.Equals(this) && p.Type != Type)
+                    if (p.PiecePoint.X == (PiecePoint.X + ValueMove) || p.PiecePoint.X == (PiecePoint.X + ((-1) * ValueMove)))
                     {
-                        if (p.PiecePoint.X == (PiecePoint.X + 1) || p.PiecePoint.X == (PiecePoint.X - 1))
-                        {
-                            list.Add(p.PiecePoint);
-                        }
+                        list.Add(p.PiecePoint);
                     }
                 }
+
             }
+
 
             // Verifica posição que pode ser colocada a frente do peão
-            if (Type == TypePiece.BLACK)
+
+            Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + ValueMove) && (x.PiecePoint.X == PiecePoint.X));
+
+
+
+            if (piece == null)
             {
-                Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 1) && (x.PiecePoint.X == PiecePoint.X));
-
-                if (piece == null) { 
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y+1));
-                }
-
-
-                if (PiecePoint.Y == 2)
-                {
-                    Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2));
-                    if (piece2 == null && piece == null)
-                    {
-                        list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
-                    }
-                }
-            }
-            else if (Type == TypePiece.WHITE)
-            {
-                Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 1) && (x.PiecePoint.X == PiecePoint.X));
-
-                if (piece == null)
-                {
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y - 1));
-                }
-
-
-                if (PiecePoint.Y == 7)
-                {
-                    Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2));
-                    if (piece2 == null && piece==null)
-                    {
-                        list.Add(new Point(PiecePoint.X, PiecePoint.Y - 2));
-                    }
-                }
+                list.Add(new Point(PiecePoint.X, PiecePoint.Y + ValueMove));
             }
 
+            if (Type == TypePiece.BLACK && PiecePoint.Y == 2)
+            {
+
+                Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2));
+                if (piece2 == null && piece == null)
+                {
+                    list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
+                }
+
+            }
+            else if (Type == TypePiece.WHITE && PiecePoint.Y == 7)
+            {
+
+                Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2));
+                if (piece2 == null && piece == null)
+                {
+                    list.Add(new Point(PiecePoint.X, PiecePoint.Y - 2));
+
+                }
+            }
             return list;
-
         }
 
         public override string ToString()
@@ -96,3 +83,4 @@ namespace Xadrez.Entities.Pieces
         }
     }
 }
+
