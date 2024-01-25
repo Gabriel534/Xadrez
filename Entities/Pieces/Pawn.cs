@@ -45,7 +45,8 @@ namespace Xadrez.Entities.Pieces
 
             // Verifica posição que pode ser colocada a frente do peão
 
-            Piece piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + ValueMove) && (x.PiecePoint.X == PiecePoint.X));
+            Piece piece = null;
+            piece = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + ValueMove) && (x.PiecePoint.X == PiecePoint.X));
 
 
 
@@ -56,8 +57,8 @@ namespace Xadrez.Entities.Pieces
 
             if (Type == TypePiece.BLACK && PiecePoint.Y == 2)
             {
-
-                Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2));
+                Piece piece2 = null;
+                piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2) && x.PiecePoint.X == PiecePoint.X);
                 if (piece2 == null && piece == null)
                 {
                     list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
@@ -66,8 +67,8 @@ namespace Xadrez.Entities.Pieces
             }
             else if (Type == TypePiece.WHITE && PiecePoint.Y == 7)
             {
-
-                Piece piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2));
+                Piece piece2 = null;
+                piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2) && x.PiecePoint.X == PiecePoint.X);
                 if (piece2 == null && piece == null)
                 {
                     list.Add(new Point(PiecePoint.X, PiecePoint.Y - 2));

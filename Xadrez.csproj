@@ -45,8 +45,11 @@
   <ItemGroup>
     <Compile Include="Entities\Board.cs" />
     <Compile Include="Entities\Comparators\ComparePiece.cs" />
+    <Compile Include="Entities\Pieces\Bishop.cs" />
+    <Compile Include="Entities\Pieces\King.cs" />
     <Compile Include="Entities\Pieces\Pawn.cs" />
     <Compile Include="Entities\Pieces\Piece.cs" />
+    <Compile Include="Entities\Pieces\Queen.cs" />
     <Compile Include="Entities\Pieces\Tower.cs" />
     <Compile Include="Entities\Utilities\Point.cs" />
     <Compile Include="Entities\Enums\TypePiece.cs" />

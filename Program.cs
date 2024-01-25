@@ -39,7 +39,15 @@ namespace Xadrez
                 new Tower(TypePiece.BLACK, new Point(1, 1)),
                 new Tower(TypePiece.WHITE, new Point(1, 8)),
                 new Tower(TypePiece.BLACK, new Point(8, 1)),
-                new Tower(TypePiece.WHITE, new Point(8, 8)));
+                new Tower(TypePiece.WHITE, new Point(8, 8)),
+                new King(TypePiece.BLACK, new Point(5, 1)),
+                new King(TypePiece.WHITE, new Point(5, 8)),
+                new Bishop(TypePiece.WHITE, new Point(3, 8)),
+                new Bishop(TypePiece.WHITE, new Point(6, 8)),
+                new Bishop(TypePiece.BLACK, new Point(3, 1)),
+                new Bishop(TypePiece.BLACK, new Point(6, 1)),
+                new Queen(TypePiece.WHITE, new Point(4,8)),
+                new Queen(TypePiece.BLACK, new Point(4, 1)));
 
             string posString;
             Piece piece;
