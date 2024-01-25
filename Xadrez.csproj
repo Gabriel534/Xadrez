@@ -46,6 +46,7 @@
     <Compile Include="Entities\Board.cs" />
     <Compile Include="Entities\Comparators\ComparePiece.cs" />
     <Compile Include="Entities\Pieces\Bishop.cs" />
+    <Compile Include="Entities\Pieces\Horse.cs" />
     <Compile Include="Entities\Pieces\King.cs" />
     <Compile Include="Entities\Pieces\Pawn.cs" />
     <Compile Include="Entities\Pieces\Piece.cs" />
