@@ -14,6 +14,11 @@ namespace Xadrez.Entities
         public Point PiecePoint { get; set; }
         public TypePiece Type { get; set; }
 
+        public Piece Clone()
+        {
+            return (Piece)this.MemberwiseClone();
+        }
+
         protected Piece(TypePiece type, Point point) { 
 
             PiecePoint = point;
