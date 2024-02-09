@@ -38,6 +38,10 @@ namespace Xadrez.Entities
                     {
                         if (point.Equals(piece.PiecePoint))
                         {
+                            if (piece.ToString() == "K")
+                            {
+                                throw new InvalidPointException("Rei está em xeque, impossível comer");
+                            }
                             pieces.Remove(piece);
                             break;
                         }

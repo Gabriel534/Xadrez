@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xadrez.Entities.Pieces;
 using Xadrez.Entities.Utilities;
 using Xadrez.Exceptions;
 using Xadrez.Services;
@@ -14,6 +15,10 @@ namespace Xadrez.Entities
     {
         public List<Piece> Pieces = new List<Piece>();
         public HashSet<Piece> BkpPieces = new HashSet<Piece>();
+
+        // Teste delegate
+        //private delegate bool RetornaXeque(Piece p, Piece king);
+
         public Board(params Piece[] pieces)
         {
             // Adiciona todas as peças ao tabuleiro
@@ -29,19 +34,20 @@ namespace Xadrez.Entities
                 Pieces.Add(piece);
                 BkpPieces.Add(piece);
             }
+
         }
 
+        // Mostra no terminal quais peças foram comidas
         public void UpdateBoardWithHighlightedPieces(List<Point> points) // Recebe os pontos que ele deve destacar na tela
         {
             bool PointBool;
 
             // Limpa o console
-            Console.Clear();
+            //Console.Clear();
 
             // Percorre os pontos no tabuleiro
             for (int i = 1; i < 9; i++)
             {
-                Console.Write(i);
                 for (int j = 1; j < 9; j++)
                 {
 
@@ -90,6 +96,7 @@ namespace Xadrez.Entities
             Console.WriteLine("  a b c d e f g h");
         }
 
+        // Obtém quais peças foram comidas no tabuleiro
         public string GetEatedPieces(TypePiece type)
         {
             string result = "[";
@@ -113,6 +120,7 @@ namespace Xadrez.Entities
 
         }
 
+        // Obtém um objeto Point a partir de coordenadas do terminal
         public Point GetPointTerminal()
         {
             string posString;
@@ -134,6 +142,7 @@ namespace Xadrez.Entities
             return point;
         }
 
+        // Obtém um objeto peça a partir de coordenadas do terminal
         public Piece GetPieceTerminal()
         {
             Piece piece;
@@ -143,7 +152,8 @@ namespace Xadrez.Entities
             try
             {
                 point = GetPointTerminal();
-            }catch(InvalidStringPointException e)
+            }
+            catch (InvalidStringPointException e)
             {
                 return null;
             }
@@ -155,7 +165,7 @@ namespace Xadrez.Entities
             if (piece == null)
             {
                 Console.WriteLine("Peça não encontrada");
-                
+
                 return null;
             }
 
@@ -163,6 +173,7 @@ namespace Xadrez.Entities
             return piece;
         }
 
+        // Faz o loop do jogo no terminal
         public void LoopGame()
         {
             string posString;
@@ -172,7 +183,6 @@ namespace Xadrez.Entities
 
             while (true)
             {
-
                 PossiblePoints.Clear();
 
                 // Atualiza o tabuleiro na tela
@@ -191,9 +201,10 @@ namespace Xadrez.Entities
                     PossiblePoints.Clear();
                     continue;
                 }
-                
 
-                PossiblePoints = piece.GetPossibleMoves(this.Pieces);
+                PossiblePoints = FilterPieceMovement(piece);
+
+                PossiblePoints.ForEach(Console.WriteLine);
 
                 // Atualiza novamente o tabuleiro na tela com os movimentos
                 this.UpdateBoardWithHighlightedPieces(PossiblePoints);
@@ -216,14 +227,108 @@ namespace Xadrez.Entities
 
                 try
                 {
-                    piece.MakeMovement(pointAttack, this.Pieces);
+                    CheckPieceMovement(piece, pointAttack);
                 }
                 catch (InvalidPointException e)
                 {
                     Console.WriteLine(e.Message);
                     continue;
                 }
+                catch (System.NullReferenceException e)
+                {
+                    Console.WriteLine("Comandos inválidos");
+                    continue;
+                }
             }
+        }
+
+        // Controla o movimento das peças e impõe regras gerais do jogo, como o xeque do rei e etc
+        public List<Point> FilterPieceMovement(Piece piece)
+        {
+            // Encontra um rei da mesma cor da peça
+            Piece king = Pieces.Find(x => x.ToString() == "K" && x.Type == piece.Type);
+
+            // Obtém os possíveis movimentos da peça
+            List<Point> moves = piece.GetPossibleMoves(this.Pieces);
+
+            // Encontra xeques com o rei especificado anteriormente
+            List<Piece> xeques = Pieces.FindAll(RetornaXeque(piece, king));
+
+            xeques.ForEach(Console.WriteLine);
+
+            // se não achar nenhum xeque, retorna os movimentos normalmente
+            if (xeques.Count == 0)
+            {
+                return moves;
+            }
+
+            // Se achar xeque, só pode mover o rei ou usar a peça para matar a peça que causou o xeque
+
+            Point pointMove;
+
+            List<Point> newMoves = new List<Point>();
+            foreach (Piece p in xeques)
+            {
+                pointMove = moves.Find(x => p.PiecePoint.Equals(x));
+                if(pointMove != null)
+                {
+                    newMoves.Add(pointMove);
+                }
+                
+            }
+
+            // Se a peça for um rei, adiciona os movimentos para escapar também
+            if (piece is King)
+            {
+                foreach(Point move in moves)
+                {
+                    if(Pieces.Find(x=> x.PiecePoint.Equals(move)) == null)
+                    {
+                        Console.WriteLine(move);
+                        newMoves.Add(move);
+                    }
+                }
+            }
+
+            return newMoves;
+        }
+
+        //Func<Piece, bool> RetornaXeque(Piece piece, Piece king)
+        // Closure que retorna outra função
+        Predicate<Piece> RetornaXeque(Piece piece, Piece king)
+        {
+            return (x) =>
+            {
+                List<Point> possibilidades = x.GetPossibleMoves(Pieces);
+
+                foreach (Point p in possibilidades)
+                {
+
+                    if (p.Equals(king.PiecePoint) && piece.Type != x.Type)
+                    {
+                        return true;
+                    }
+
+                }
+                return false;
+            };
+
+
+        }
+
+
+        // Faz o movimento apenas se for permitido oelo FilterPieceMovement
+        public void CheckPieceMovement(Piece piece, Point pointAttack)
+        {
+
+            Point p = FilterPieceMovement(piece).Find(x => pointAttack.Equals(x));
+
+
+            if (p == null)
+            {
+                throw new InvalidPointException("Ponto de ataque da peça inválido");
+            }
+            piece.MakeMovement(pointAttack, this.Pieces);
         }
     }
 }
