@@ -11,13 +11,13 @@ namespace Xadrez.Entities.Pieces
 {
     internal class Tower : Piece
     {
-        public Tower(TypePiece type, Point point) : base(type, point) { }
+        public Tower(TypePiece type, XadrezPoint point) : base(type, point) { }
 
 
-        public override List<Point> GetPossibleMoves(List<Piece> pieces)
+        public override List<XadrezPoint> GetPossibleMoves(List<Piece> pieces)
         {
             // Cria a lista de pontos
-            List<Point> result = new List<Point>();
+            List<XadrezPoint> result = new List<XadrezPoint>();
 
 
             // Determina qual a máxima e mínima casa que as posições possíveis podem chegar
@@ -70,12 +70,12 @@ namespace Xadrez.Entities.Pieces
             // Adiciona as posições da esquerda e da direita
             for(int i = this.PiecePoint.X+1; i<Maximo+1; i++)
             {
-                result.Add(new Point(i, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(i, this.PiecePoint.Y));
             }
 
             for (int i = Minimo; i < this.PiecePoint.X; i++)
             {
-                result.Add(new Point(i, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(i, this.PiecePoint.Y));
             }
 
             // Refaz as variáveis de controle
@@ -126,12 +126,12 @@ namespace Xadrez.Entities.Pieces
             // Adiciona as posições de cima e de baixo
             for (int i = this.PiecePoint.Y + 1; i < Maximo + 1; i++)
             {
-                result.Add(new Point(this.PiecePoint.X, i));
+                result.Add(new XadrezPoint(this.PiecePoint.X, i));
             }
 
             for (int i = Minimo; i < this.PiecePoint.Y; i++)
             {
-                result.Add(new Point(this.PiecePoint.X, i));
+                result.Add(new XadrezPoint(this.PiecePoint.X, i));
             }
 
 

@@ -10,12 +10,12 @@ namespace Xadrez.Entities.Pieces
 {
     internal class Queen : Piece
     {
-        public Queen(TypePiece type, Point point) : base(type, point) { }
+        public Queen(TypePiece type, XadrezPoint point) : base(type, point) { }
 
-        public override List<Point> GetPossibleMoves(List<Piece> pieces)
+        public override List<XadrezPoint> GetPossibleMoves(List<Piece> pieces)
         {
             // Cria a lista de pontos
-            List<Point> result = new List<Point>();
+            List<XadrezPoint> result = new List<XadrezPoint>();
 
 
             // Determina qual a máxima e mínima casa que as posições possíveis podem chegar
@@ -68,12 +68,12 @@ namespace Xadrez.Entities.Pieces
             // Adiciona as posições da esquerda e da direita
             for (int i = this.PiecePoint.X + 1; i < Maximo + 1; i++)
             {
-                result.Add(new Point(i, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(i, this.PiecePoint.Y));
             }
 
             for (int i = Minimo; i < this.PiecePoint.X; i++)
             {
-                result.Add(new Point(i, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(i, this.PiecePoint.Y));
             }
 
             // Refaz as variáveis de controle
@@ -125,24 +125,24 @@ namespace Xadrez.Entities.Pieces
             // Adiciona as posições de cima e de baixo
             for (int i = this.PiecePoint.Y + 1; i < Maximo + 1; i++)
             {
-                result.Add(new Point(this.PiecePoint.X, i));
+                result.Add(new XadrezPoint(this.PiecePoint.X, i));
             }
 
             for (int i = Minimo; i < this.PiecePoint.Y; i++)
             {
-                result.Add(new Point(this.PiecePoint.X, i));
+                result.Add(new XadrezPoint(this.PiecePoint.X, i));
             }
 
             //------------------------------------------------------------------------------------------------------------------------------------------
 
             int cont = 1;
-            Point point;
+            XadrezPoint point;
             Piece piece;
 
             // Verifica as casas disponíveis na diagonal direita abaixo
             while (cont + this.PiecePoint.X < 9 && cont + this.PiecePoint.Y < 9)
             {
-                point = new Point(this.PiecePoint.X + cont, this.PiecePoint.Y + cont);
+                point = new XadrezPoint(this.PiecePoint.X + cont, this.PiecePoint.Y + cont);
                 piece = pieces.Find(p => p.PiecePoint.Equals(point));
                 if (piece != null)
                 {
@@ -163,7 +163,7 @@ namespace Xadrez.Entities.Pieces
             // Verifica as casas disponíveis na diagonal direita acima
             while (cont + this.PiecePoint.X < 9 && this.PiecePoint.Y - cont > 0)
             {
-                point = new Point(this.PiecePoint.X + cont, this.PiecePoint.Y - cont);
+                point = new XadrezPoint(this.PiecePoint.X + cont, this.PiecePoint.Y - cont);
                 piece = pieces.Find(p => p.PiecePoint.Equals(point));
                 if (piece != null)
                 {
@@ -184,7 +184,7 @@ namespace Xadrez.Entities.Pieces
             // Verifica as casas disponíveis na diagonal esquerda abaixo
             while (this.PiecePoint.X - cont > 0 && this.PiecePoint.Y + cont < 9)
             {
-                point = new Point(this.PiecePoint.X - cont, this.PiecePoint.Y + cont);
+                point = new XadrezPoint(this.PiecePoint.X - cont, this.PiecePoint.Y + cont);
                 piece = pieces.Find(p => p.PiecePoint.Equals(point));
                 if (piece != null)
                 {
@@ -205,7 +205,7 @@ namespace Xadrez.Entities.Pieces
             // Verifica as casas disponíveis na diagonal esquerda acima
             while (this.PiecePoint.X - cont > 0 && this.PiecePoint.Y - cont > 0)
             {
-                point = new Point(this.PiecePoint.X - cont, this.PiecePoint.Y - cont);
+                point = new XadrezPoint(this.PiecePoint.X - cont, this.PiecePoint.Y - cont);
                 piece = pieces.Find(p => p.PiecePoint.Equals(point));
                 if (piece != null)
                 {

@@ -10,8 +10,7 @@ namespace Xadrez.Entities
 {
     internal abstract class Piece
     {
-
-        public Point PiecePoint { get; set; }
+        public XadrezPoint PiecePoint { get; set; }
         public TypePiece Type { get; set; }
 
         public Piece Clone()
@@ -19,18 +18,18 @@ namespace Xadrez.Entities
             return (Piece)this.MemberwiseClone();
         }
 
-        protected Piece(TypePiece type, Point point) { 
+        protected Piece(TypePiece type, XadrezPoint point) { 
 
             PiecePoint = point;
             Type = type;
         }
 
-        public abstract List<Point> GetPossibleMoves(List<Piece> pieces); //Possíveis locais para se colocar uma peça
+        public abstract List<XadrezPoint> GetPossibleMoves(List<Piece> pieces); //Possíveis locais para se colocar uma peça
 
-        public virtual void MakeMovement(Point point, List<Piece> pieces)
+        public virtual void MakeMovement(XadrezPoint point, List<Piece> pieces)
         {
             // Coloca uma peça no lugar especificado e, caso haja alguma peça, ela come a peça
-            foreach (Point p in GetPossibleMoves(pieces))
+            foreach (XadrezPoint p in GetPossibleMoves(pieces))
             {
                 if (p.Equals(point))
                 {

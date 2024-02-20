@@ -10,13 +10,13 @@ namespace Xadrez.Entities.Pieces
     internal class Pawn : Piece
     {
         private int ValueMove; // Indica se a possível localização da casa é em cima ou em baixo dependendo do sinal deste valor, que é pra ser 1
-        public Pawn(TypePiece type, Point point) : base(type, point)
+        public Pawn(TypePiece type, XadrezPoint point) : base(type, point)
         {
         }
 
-        public override List<Point> GetPossibleMoves(List<Piece> pieces)
+        public override List<XadrezPoint> GetPossibleMoves(List<Piece> pieces)
         {
-            List<Point> list = new List<Point>();
+            List<XadrezPoint> list = new List<XadrezPoint>();
 
             if (Type == TypePiece.BLACK)
             {
@@ -52,7 +52,7 @@ namespace Xadrez.Entities.Pieces
 
             if (piece == null)
             {
-                list.Add(new Point(PiecePoint.X, PiecePoint.Y + ValueMove));
+                list.Add(new XadrezPoint(PiecePoint.X, PiecePoint.Y + ValueMove));
             }
 
             if (Type == TypePiece.BLACK && PiecePoint.Y == 2)
@@ -61,7 +61,7 @@ namespace Xadrez.Entities.Pieces
                 piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y + 2) && x.PiecePoint.X == PiecePoint.X);
                 if (piece2 == null && piece == null)
                 {
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y + 2));
+                    list.Add(new XadrezPoint(PiecePoint.X, PiecePoint.Y + 2));
                 }
 
             }
@@ -71,7 +71,7 @@ namespace Xadrez.Entities.Pieces
                 piece2 = pieces.Find(x => x.PiecePoint.Y == (PiecePoint.Y - 2) && x.PiecePoint.X == PiecePoint.X);
                 if (piece2 == null && piece == null)
                 {
-                    list.Add(new Point(PiecePoint.X, PiecePoint.Y - 2));
+                    list.Add(new XadrezPoint(PiecePoint.X, PiecePoint.Y - 2));
 
                 }
             }

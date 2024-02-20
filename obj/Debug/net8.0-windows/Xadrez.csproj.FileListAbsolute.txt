@@ -1,0 +1,17 @@
+E:\C#Projetos\Xadrez\bin\Debug\net8.0-windows\Xadrez.exe
+E:\C#Projetos\Xadrez\bin\Debug\net8.0-windows\Xadrez.deps.json
+E:\C#Projetos\Xadrez\bin\Debug\net8.0-windows\Xadrez.runtimeconfig.json
+E:\C#Projetos\Xadrez\bin\Debug\net8.0-windows\Xadrez.dll
+E:\C#Projetos\Xadrez\bin\Debug\net8.0-windows\Xadrez.pdb
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.csproj.GenerateResource.cache
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.AssemblyInfoInputs.cache
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.AssemblyInfo.cs
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.csproj.CoreCompileInputs.cache
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.dll
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\refint\Xadrez.dll
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.pdb
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.genruntimeconfig.cache
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\ref\Xadrez.dll
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.Properties.Resources.resources
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.TelaXadrez.resources

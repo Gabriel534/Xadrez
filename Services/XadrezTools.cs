@@ -29,10 +29,37 @@ namespace Xadrez.Services
                 default: throw new InvalidPointException("Ponto recebido inválido para o Xadrez");
             }
         }
-
         // Converte uma string em um ponto
+
+
         // ex de entrada: f8, g4
-        public static Point ConvertStringIntoPoint(string pos)
+
+        public static int ConvertPointIntoANumber(XadrezPoint point)
+        {
+            int result = 0;
+            result += (point.Y-1) * 8;
+            result += point.X;
+            return result;
+        }
+
+        public static XadrezPoint ConvertNumberIntoAPoint(int number)
+        {
+            int x, y;
+            if(number%8 == 0)
+            {
+                x = 8;
+            }
+            else
+            {
+                x = number%8;
+            }
+
+            y = (int)Math.Ceiling((double)number / 8);
+
+            return new XadrezPoint(x, y);
+        }
+
+        public static XadrezPoint ConvertStringIntoPoint(string pos)
         {
             int x;
             int y;
@@ -79,7 +106,7 @@ namespace Xadrez.Services
 
             try
             {
-                return new Point(x, y);
+                return new XadrezPoint(x, y);
             }
             catch (InvalidPointException)
             {

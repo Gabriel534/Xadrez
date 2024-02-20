@@ -9,31 +9,31 @@ namespace Xadrez.Entities.Pieces
 {
     internal class King : Piece
     {
-        public King(TypePiece type, Point point) : base(type, point)
+        public King(TypePiece type, XadrezPoint point) : base(type, point)
         {
         }
 
-        public override List<Point> GetPossibleMoves(List<Piece> pieces)
+        public override List<XadrezPoint> GetPossibleMoves(List<Piece> pieces)
         {
-            List<Point> result = new List<Point>();
+            List<XadrezPoint> result = new List<XadrezPoint>();
             if (this.PiecePoint.X != 8)
             {
-                result.Add(new Point(this.PiecePoint.X + 1, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(this.PiecePoint.X + 1, this.PiecePoint.Y));
             }
             if (this.PiecePoint.X != 1)
             {
-                result.Add(new Point(this.PiecePoint.X - 1, this.PiecePoint.Y));
+                result.Add(new XadrezPoint(this.PiecePoint.X - 1, this.PiecePoint.Y));
             }
             if (this.PiecePoint.Y != 1)
             {
-                result.Add(new Point(this.PiecePoint.X, this.PiecePoint.Y - 1));
+                result.Add(new XadrezPoint(this.PiecePoint.X, this.PiecePoint.Y - 1));
             }
             if (this.PiecePoint.Y != 8)
             {
-                result.Add(new Point(this.PiecePoint.X, this.PiecePoint.Y + 1));
+                result.Add(new XadrezPoint(this.PiecePoint.X, this.PiecePoint.Y + 1));
             }
 
-            Point pointEqual;
+            XadrezPoint pointEqual;
 
             foreach (Piece piece in pieces)
             {

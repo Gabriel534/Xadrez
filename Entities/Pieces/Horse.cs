@@ -9,24 +9,24 @@ namespace Xadrez.Entities.Pieces
 {
     internal class Horse : Piece
     {
-        public Horse(TypePiece type, Point point) : base(type, point)
+        public Horse(TypePiece type, XadrezPoint point) : base(type, point)
         {
         }
 
-        public override List<Point> GetPossibleMoves(List<Piece> pieces)
+        public override List<XadrezPoint> GetPossibleMoves(List<Piece> pieces)
         {
-            List<Point> result = new List<Point>();
-            Point point;
+            List<XadrezPoint> result = new List<XadrezPoint>();
+            XadrezPoint point;
             
             //Adiciona a lista todos os movimentos possíveis do cavalo dentro do tabuleiro
-            if (this.PiecePoint.X + 2 < 9 && this.PiecePoint.Y + 1 < 9) result.Add(new Point(this.PiecePoint.X + 2, this.PiecePoint.Y + 1));
-            if (this.PiecePoint.X + 2 < 9 && this.PiecePoint.Y - 1 > 0) result.Add(new Point(this.PiecePoint.X + 2, this.PiecePoint.Y - 1));
-            if (this.PiecePoint.X - 2 > 0 && this.PiecePoint.Y + 1 < 9) result.Add(new Point(this.PiecePoint.X - 2, this.PiecePoint.Y + 1));
-            if (this.PiecePoint.X - 2 > 0 && this.PiecePoint.Y - 1 > 0) result.Add(new Point(this.PiecePoint.X - 2, this.PiecePoint.Y - 1));
-            if (this.PiecePoint.X + 1 < 9 && this.PiecePoint.Y + 2 < 9) result.Add(new Point(this.PiecePoint.X + 1, this.PiecePoint.Y + 2));
-            if (this.PiecePoint.X + 1 < 9 && this.PiecePoint.Y - 2 > 0) result.Add(new Point(this.PiecePoint.X + 1, this.PiecePoint.Y - 2));
-            if (this.PiecePoint.X - 1 > 0 && this.PiecePoint.Y + 2 < 9) result.Add(new Point(this.PiecePoint.X - 1, this.PiecePoint.Y + 2));
-            if (this.PiecePoint.X - 1 > 0 && this.PiecePoint.Y - 2 > 0) result.Add(new Point(this.PiecePoint.X - 1, this.PiecePoint.Y - 2));
+            if (this.PiecePoint.X + 2 < 9 && this.PiecePoint.Y + 1 < 9) result.Add(new XadrezPoint(this.PiecePoint.X + 2, this.PiecePoint.Y + 1));
+            if (this.PiecePoint.X + 2 < 9 && this.PiecePoint.Y - 1 > 0) result.Add(new XadrezPoint(this.PiecePoint.X + 2, this.PiecePoint.Y - 1));
+            if (this.PiecePoint.X - 2 > 0 && this.PiecePoint.Y + 1 < 9) result.Add(new XadrezPoint(this.PiecePoint.X - 2, this.PiecePoint.Y + 1));
+            if (this.PiecePoint.X - 2 > 0 && this.PiecePoint.Y - 1 > 0) result.Add(new XadrezPoint(this.PiecePoint.X - 2, this.PiecePoint.Y - 1));
+            if (this.PiecePoint.X + 1 < 9 && this.PiecePoint.Y + 2 < 9) result.Add(new XadrezPoint(this.PiecePoint.X + 1, this.PiecePoint.Y + 2));
+            if (this.PiecePoint.X + 1 < 9 && this.PiecePoint.Y - 2 > 0) result.Add(new XadrezPoint(this.PiecePoint.X + 1, this.PiecePoint.Y - 2));
+            if (this.PiecePoint.X - 1 > 0 && this.PiecePoint.Y + 2 < 9) result.Add(new XadrezPoint(this.PiecePoint.X - 1, this.PiecePoint.Y + 2));
+            if (this.PiecePoint.X - 1 > 0 && this.PiecePoint.Y - 2 > 0) result.Add(new XadrezPoint(this.PiecePoint.X - 1, this.PiecePoint.Y - 2));
 
             foreach(Piece p in pieces)
             {
