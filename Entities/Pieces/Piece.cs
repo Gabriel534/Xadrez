@@ -39,7 +39,8 @@ namespace Xadrez.Entities
                         {
                             if (piece.ToString() == "K")
                             {
-                                throw new InvalidPointException("Rei está em xeque, impossível comer");
+                                MessageBox.Show("Impossível comer o rei diretamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
                             }
                             pieces.Remove(piece);
                             break;

@@ -172,7 +172,7 @@ namespace Xadrez.Entities
                     {
                         Button button2 = (Button)button;
 
-                        button2.BackColor = Color.White;
+                        button2.BackColor = GlobalVariables.COLOR_BACK_SELECTED_BUTTONS;
                         break;
                     }
                 }

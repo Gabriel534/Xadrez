@@ -191,7 +191,7 @@
             table.Controls.Add(p59, 2, 0);
             table.Controls.Add(p57, 0, 0);
             table.ImeMode = ImeMode.On;
-            table.Location = new Point(35, 39);
+            table.Location = new Point(36, 42);
             table.Name = "table";
             table.RowCount = 8;
             table.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));

@@ -15,3 +15,4 @@ E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.genruntimeconfig.cache
 E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\ref\Xadrez.dll
 E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.Properties.Resources.resources
 E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.TelaXadrez.resources
+E:\C#Projetos\Xadrez\obj\Debug\net8.0-windows\Xadrez.sourcelink.json
