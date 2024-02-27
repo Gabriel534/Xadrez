@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xadrez.Entities.Utilities;
+using Xadrez.Exceptions;
 
 namespace Xadrez.Entities.Pieces
 {
@@ -52,7 +53,13 @@ namespace Xadrez.Entities.Pieces
 
             if (piece == null)
             {
-                list.Add(new XadrezPoint(PiecePoint.X, PiecePoint.Y + ValueMove));
+                try
+                {
+                    list.Add(new XadrezPoint(PiecePoint.X, PiecePoint.Y + ValueMove));
+                }
+                catch (InvalidPointException e)
+                {
+                }
             }
 
             if (Type == TypePiece.BLACK && PiecePoint.Y == 2)

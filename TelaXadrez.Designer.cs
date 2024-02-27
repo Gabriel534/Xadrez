@@ -94,8 +94,11 @@
             p58 = new Button();
             p59 = new Button();
             p57 = new Button();
+            statusStrip1 = new StatusStrip();
+            statusPlayer = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)tabuleiro).BeginInit();
             table.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // tabuleiro
@@ -1036,6 +1039,21 @@
             p57.UseVisualStyleBackColor = true;
             p57.Click += Piece_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { statusPlayer });
+            statusStrip1.Location = new Point(0, 539);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(551, 22);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // statusPlayer
+            // 
+            statusPlayer.Name = "statusPlayer";
+            statusPlayer.Size = new Size(66, 17);
+            statusPlayer.Text = "statusLabel";
+            // 
             // TelaXadrez
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -1043,6 +1061,7 @@
             AutoScroll = true;
             AutoValidate = AutoValidate.Disable;
             ClientSize = new Size(551, 561);
+            Controls.Add(statusStrip1);
             Controls.Add(table);
             Controls.Add(tabuleiro);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -1052,6 +1071,8 @@
             Load += TelaXadrez_Load;
             ((System.ComponentModel.ISupportInitialize)tabuleiro).EndInit();
             table.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1124,5 +1145,7 @@
         private Button p62;
         private Button p61;
         private Button p60;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel statusPlayer;
     }
 }
