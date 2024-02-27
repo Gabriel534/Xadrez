@@ -1,4 +1,4 @@
-# Jogo de Xadrez simples
+# Jogo de Xadrez simples - Em andamento 
 
 Este é um projeto em C# que utiliza o Forms para a criação um jogo de Xadrez
 
